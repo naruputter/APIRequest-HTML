@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RequestCenter</title>
+</head>
+
+<body>
+  <div class="request">
+    <h1 class="header">RequestCenter</h1>
+    <div class="request-input" id="input">
+      <div class="input-row" id="url">
+        <a>url</a>
+        <input  class="input" type="text">
+      </div>
+      <div class="input-row" id="header">
+        <a>header</a>
+        <input class="input" type="text">
+      </div>
+      <div class="input-row" id="body">
+        <a>body</a>
+        <textarea class="input" type="text"></textarea>
+      </div>
+    </div>
+    <button onclick="">Get Data</button>
+  </div>
+  <div class="response">
+    <h1>response</h1>
+  </div>
+</body>
+
+</html>
+
+<style>
+  /* CSS to center the elements */
+
+  body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 0;
+    padding: 0; 
+  }
+
+  
+  .request {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 20px;
+    background-color: lightblue;
+  }
+
+  .request .request-input {
+    display: grid;
+    gap: 10px;
+    }
+
+  .request .request-input .input-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px
+  }
+
+  .request .request-input .input-row .input {
+    width: 250px;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border-radius: 10px;
+    
+  }
+
+  .request .request-input #body .input {
+    height: 80px;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border-radius: 10px;
+  }
+  
+  .response {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    gap: 20px;
+    background-color: rgb(216, 181, 201);
+  }
+
+
+
+  
+
+  
+</style>
