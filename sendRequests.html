@@ -46,7 +46,9 @@
 
     const url = document.getElementById("url-input").value
     const method = document.getElementById("method-input").value
-    const body = JSON.parse(document.getElementById("body-input").value)
+    var body = document.getElementById("body-input").value
+
+
  
     var responseData = document.getElementById("ResponseData");
 
@@ -55,7 +57,11 @@
     const requestsData = {
       method: method,
       headers: headers,
-      body: JSON.stringify(body)
+    }
+
+    if (body.trim() !== '' && method !== 'get'){
+      body = JSON.parse(body)
+      requestsData.body = JSON.stringify(body)
     }
 
     fetch(url, requestsData)
