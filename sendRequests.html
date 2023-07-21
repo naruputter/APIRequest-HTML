@@ -10,16 +10,25 @@
     <h1 class="header">RequestCenter</h1>
     <div class="request-input" id="input">
       <div class="input-row" id="url">
-        <a>url</a>
+        <a>URL</a>
         <input class="input" id="url-input" type="text">
       </div>
+      <div class="input-row" id="method">
+        <a>Method</a>
+        <select id="method-input" class="dropdown">
+          <option value="get">GET</option>
+          <option value="post">POST</option>
+          <option value="put">PUT</option>
+          <option value="delete">DELETE</option>
+      </select>
+      </div>
       <div class="input-row" id="header">
-        <a>header</a>
+        <a>Header</a>
         <input class="input" type="text">
       </div>
       <div class="input-row" id="body">
-        <a>body</a>
-        <textarea class="input" type="text"></textarea>
+        <a>Body</a>
+        <textarea class="input" id="body-input" type="text"></textarea>
       </div>
     </div>
     <button onclick="sendRequest()">Get Data</button>
@@ -27,7 +36,6 @@
   <div class="response">
     <h1 class="header">Response</h1>
     <div class="response-data" id="ResponseData">
-      test
     </div>
   </div>
 </body>
@@ -37,9 +45,20 @@
   function sendRequest() {
 
     const url = document.getElementById("url-input").value
+    const method = document.getElementById("method-input").value
+    const body = JSON.parse(document.getElementById("body-input").value)
+ 
     var responseData = document.getElementById("ResponseData");
 
-    fetch(url)
+    const headers = { 'Content-Type': 'application/json' };
+
+    const requestsData = {
+      method: method,
+      headers: headers,
+      body: JSON.stringify(body)
+    }
+
+    fetch(url, requestsData)
       .then(response => response.json())  // Parse response as JSON
       .then(data => {
         console.log(data);  // Access the response data
@@ -58,7 +77,7 @@
     body {
       margin: 0;
       padding: 0;
-      gap:20px;
+      gap: 20px;
     }
 
   }
@@ -71,73 +90,79 @@
       padding: 0;
     }
   }
-    .header {
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-    }
+
+  .header {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+  }
 
 
-    .request {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      gap: 20px;
-      /* background-color: lightblue; */
-    }
+  .request {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 20px;
+    /* background-color: lightblue; */
+  }
 
-    .request .request-input {
-      display: grid;
-      gap: 10px;
-    }
+  .request .request-input {
+    display: grid;
+    gap: 10px;
+  }
 
-    .request .request-input .input-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px
-    }
+  .request .request-input .input-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px
+  }
 
-    .request .request-input .input-row .input {
-      width: 250px;
-      padding-inline: 20px;
-      padding-block: 10px;
-      border-radius: 10px;
+  .request .request-input .input-row .input {
+    width: 250px;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border-radius: 10px;
 
-    }
+  }
 
-    .request .request-input #body .input {
-      height: 80px;
-      padding-inline: 20px;
-      padding-block: 10px;
-      border-radius: 10px;
-    }
+  .request .request-input .input-row .dropdown {
+    width: 250px;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border-radius: 50px;
 
-    .response {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      gap: 20px;
-      /* background-color: rgb(216, 181, 201); */
-    }
+  }
 
-    .response .response-data {
-      background-color: rgb(0, 0, 0);
-      height: 80%;
-      width: 80%;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-    }
+  .request .request-input #body .input {
+    height: 80px;
+    padding-inline: 20px;
+    padding-block: 10px;
+    border-radius: 10px;
+  }
 
+  .response {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 20px;
+    /* background-color: rgb(216, 181, 201); */
+  }
 
-
+  .response .response-data {
+    background-color: rgb(0, 0, 0);
+    height: 80%;
+    width: 80%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
 </style>
 
 </html>
